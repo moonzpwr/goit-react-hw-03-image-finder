@@ -7,17 +7,23 @@ export default class Modal extends Component {
         url: propTypes.string
     }
 
+    
+
     componentDidMount() {
         window.addEventListener('keydown', this.handleCloseModal)
+        document.addEventListener('click', this.handleCloseModal)
+
     }
 
     componentWillUnmount() {
-    window.removeEventListener('keydown', this.handleCloseModal)
+        window.removeEventListener('keydown', this.handleCloseModal)
+        document.removeEventListener('click', this.handleCloseModal)  
     }
 
     handleCloseModal = (e) => {
-        if (e.code === 'Escape') {
-                this.props.onClose();
+        if (e.code === 'Escape' || e.target.className === 'Overlay') {
+            this.props.onClose();
+            
             }
     }
 

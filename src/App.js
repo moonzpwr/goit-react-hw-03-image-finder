@@ -32,6 +32,13 @@ class App extends Component {
     if (prevQuery !== nextQuery) {
       this.fetchImages()
     }
+
+    if (prevState.images.length < this.state.images.length && prevState.images.length !== 0) {
+      window.scrollTo({
+          top: document.documentElement.scrollHeight,
+          behavior: 'smooth',
+          })
+    }
   }
 
   fetchImages = () => {
@@ -46,12 +53,12 @@ class App extends Component {
   onClickLoadMore = () => {
     this.fetchImages()
 
-    setTimeout(() => {
-      window.scrollTo({
-          top: document.documentElement.scrollHeight,
-          behavior: 'smooth',
-          })
-    }, 100)
+    // setTimeout(() => {
+    //   window.scrollTo({
+    //       top: document.documentElement.scrollHeight,
+    //       behavior: 'smooth',
+    //       })
+    // }, 100)
   }
 
   closeModal = () => {
